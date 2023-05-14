@@ -6,8 +6,8 @@ const DIFFICULTY = {
 
 const MINEFIELD_SIZE_BY_DIFFICULTY = {
   [DIFFICULTY.beginner]: {
-    width: 9,
-    height: 9,
+    width: 8,
+    height: 8,
   },
   [DIFFICULTY.intermediate]: {
     width: 16,
