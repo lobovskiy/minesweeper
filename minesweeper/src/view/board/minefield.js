@@ -1,3 +1,5 @@
+import { updateMinefieldContainer } from '.';
+
 const minefield = document.createElement('div');
 minefield.classList.add('minefield');
 
@@ -6,17 +8,18 @@ function setDifficultyDataAttribute(attribute) {
 }
 
 function updateMinefield(cells, numberOfColumns) {
-  minefield.innerHTML = '';
-
   if (Array.isArray(cells)) {
+    minefield.innerHTML = '';
+    minefield.style.gridTemplateColumns = `repeat(${numberOfColumns}, 1fr)`;
+
     cells.forEach(() => {
       const cellContainer = document.createElement('div');
       cellContainer.classList.add('minefield__cell');
       minefield.append(cellContainer);
     });
-  }
 
-  minefield.style.gridTemplateColumns = `repeat(${numberOfColumns}, 1fr)`;
+    updateMinefieldContainer(minefield);
+  }
 }
 
 export { minefield, setDifficultyDataAttribute, updateMinefield };

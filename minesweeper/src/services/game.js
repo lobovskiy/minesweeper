@@ -3,6 +3,7 @@ import {
   setDifficultyDataAttribute,
   updateMinefield,
 } from '../view/board/minefield';
+import { updateToolbar } from '../view/board/toolbar';
 
 class Game {
   constructor() {
@@ -31,6 +32,7 @@ class Game {
     this.cells = this.initCells();
 
     setDifficultyDataAttribute(difficulty);
+    updateToolbar();
     updateMinefield(this.cells, this.width);
   }
 }

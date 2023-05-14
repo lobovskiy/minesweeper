@@ -1,8 +1,7 @@
-import board from './board';
+const body = document.querySelector('body');
 
-function renderApp() {
-  const body = document.querySelector('body');
-  body.append(board);
+function toggleDarkThemeClass() {
+  body.classList.toggle('dark-mode');
 }
 
-export default renderApp;
+export { body, toggleDarkThemeClass };
