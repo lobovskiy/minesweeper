@@ -1,9 +1,9 @@
-import { DIFFICULTY, MINE_FIELD_SIZE } from '../data/settings';
+import { DIFFICULTY, MINEFIELD_SIZE } from '../constants';
 
 class Settings {
   constructor() {
     this.difficulty = DIFFICULTY.beginner;
-    this.boardSize = MINE_FIELD_SIZE[this.difficulty];
+    this.boardSize = MINEFIELD_SIZE[this.difficulty];
     this.sound = true;
   }
 
