@@ -3,12 +3,8 @@ import gameSettings from '../services/settings';
 import gameTimer from '../services/timer';
 
 function initNewGame() {
+  gameTimer.reset();
   minesweeper.initNewGame(gameSettings.difficulty);
 }
 
-function initGame() {
-  initNewGame();
-  gameTimer.reset();
-}
-
-export { initGame, initNewGame };
+export { initNewGame };

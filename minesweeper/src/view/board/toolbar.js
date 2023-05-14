@@ -27,6 +27,14 @@ toolbar.append(
   btnToggleColorTheme,
 );
 
-function updateToolbar() {}
+function updateTimer(milliseconds) {
+  const ISOStringMinutesStartIndex = 14;
+  const ISOStringSecondsEndIndex = 18;
+  const mmss = new Date(milliseconds)
+    .toISOString()
+    .slice(ISOStringMinutesStartIndex, ISOStringSecondsEndIndex + 1);
 
-export { toolbar, updateToolbar };
+  timerContainer.innerHTML = mmss;
+}
+
+export { toolbar, updateTimer };
