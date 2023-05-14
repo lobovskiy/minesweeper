@@ -5,7 +5,7 @@ class Timer {
   }
 
   reset() {
-    clearInterval(this.interval);
+    this.stop();
     this.milliseconds = 0;
   }
 
@@ -14,6 +14,10 @@ class Timer {
       this.milliseconds += 1000;
       callbackRender(this.milliseconds);
     }, 1000);
+  }
+
+  stop() {
+    clearInterval(this.interval);
   }
 }
 

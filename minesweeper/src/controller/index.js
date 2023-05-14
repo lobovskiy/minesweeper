@@ -16,7 +16,18 @@ function openCell(index) {
   }
 
   minesweeper.openCell(index);
-  updateMinefield(openCell);
+
+  let indexFailed;
+
+  if (minesweeper.isGameFinished) {
+    gameTimer.stop();
+
+    if (minesweeper.isGameLost) {
+      indexFailed = index;
+    }
+  }
+
+  updateMinefield(openCell, indexFailed);
 }
 
 function startNewGame(difficulty) {

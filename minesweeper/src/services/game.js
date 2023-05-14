@@ -6,6 +6,8 @@ class Game {
     this.difficulty = difficulty || DIFFICULTIES.beginner;
     this.cells = Game.initCells(this.difficulty);
     this.isGameStarted = false;
+    this.isGameFinished = false;
+    this.isGameLost = false;
   }
 
   static initCells(difficulty) {
@@ -72,10 +74,25 @@ class Game {
     this.setLabels();
   }
 
+  loseGame() {
+    this.cells.forEach((cell, index) => {
+      this.cells[index].isOpen = true;
+    });
+
+    this.isGameFinished = true;
+    this.isGameLost = true;
+  }
+
   openCell(index) {
     if (!this.isGameStarted) {
       this.setMines(index);
       this.isGameStarted = true;
+    }
+
+    if (this.cells[index].isMine) {
+      this.loseGame();
+    } else {
+      this.cells[index].isOpen = true;
     }
   }
 }
