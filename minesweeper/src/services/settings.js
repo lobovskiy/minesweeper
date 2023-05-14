@@ -3,13 +3,13 @@ import {
   SCREEN_SIZES_MIN_WIDTHS,
   SCREEN_SIZES_ASCENDING,
   DIFFICULTY,
-  MINEFIELD_SIZE,
+  MINEFIELD_SIZE_BY_DIFFICULTY,
 } from '../constants';
 
 class Settings {
   constructor() {
     this.difficulty = DIFFICULTY.beginner;
-    this.boardSize = MINEFIELD_SIZE[this.difficulty];
+    this.boardSize = MINEFIELD_SIZE_BY_DIFFICULTY[this.difficulty];
     this.sound = true;
     this.screenSize = undefined;
 

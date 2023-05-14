@@ -20,7 +20,7 @@ const DIFFICULTY = {
   expert: 'expert',
 };
 
-const MINEFIELD_SIZE = {
+const MINEFIELD_SIZE_BY_DIFFICULTY = {
   [DIFFICULTY.beginner]: {
     width: 9,
     height: 9,
@@ -40,5 +40,5 @@ export {
   SCREEN_SIZES_MIN_WIDTHS,
   SCREEN_SIZES_ASCENDING,
   DIFFICULTY,
-  MINEFIELD_SIZE,
+  MINEFIELD_SIZE_BY_DIFFICULTY,
 };
