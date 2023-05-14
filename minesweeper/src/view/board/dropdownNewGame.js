@@ -10,14 +10,14 @@ dropdownNewGameList.classList.add(
   'hidden',
 );
 
-function renderDropdownNewGameList(callback) {
+function renderDropdownNewGameList(callbackStartNewGame) {
   Object.values(DIFFICULTIES).forEach((difficulty) => {
     const listItem = document.createElement('div');
     listItem.classList.add('difficulties-list');
     listItem.innerHTML = difficulty;
     listItem.addEventListener('click', () => {
       dropdownNewGameList.classList.toggle('hidden');
-      callback(difficulty);
+      callbackStartNewGame(difficulty);
     });
 
     dropdownNewGameList.append(listItem);

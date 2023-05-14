@@ -1,6 +1,6 @@
 import { toggleDarkThemeClass } from '..';
 import { updateToolbarContainer } from '.';
-import dropdownNewGame from './dropdown-new-game';
+import dropdownNewGame from './dropdownNewGame';
 
 const toolbar = document.createElement('div');
 toolbar.classList.add('toolbar');
