@@ -36,5 +36,12 @@
       box-sizing: border-box;
       border: 2px outset #ececec;
     }
+
+    &:active,
+    &_open {
+      &::after {
+        border: none;
+      }
+    }
   }
 }
