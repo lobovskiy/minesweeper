@@ -1,5 +1,5 @@
 import { MINEFIELD_SIZE_BY_DIFFICULTY, DIFFICULTY } from '../constants';
-import updateMinefield from '../view/board/minefield';
+import { updateMinefield } from '../view/board/minefield';
 
 class Game {
   constructor() {
@@ -22,7 +22,7 @@ class Game {
     return new Array(cellsAmount).fill(initialCell);
   }
 
-  initMinefield(difficulty) {
+  initNewGame(difficulty) {
     this.width = MINEFIELD_SIZE_BY_DIFFICULTY[difficulty].width;
     this.height = MINEFIELD_SIZE_BY_DIFFICULTY[difficulty].height;
     this.cells = this.initCells();

@@ -1,8 +1,8 @@
-import { renderBoard } from './board';
+import board from './board';
 
 function renderApp() {
   const body = document.querySelector('body');
-  renderBoard(body);
+  body.append(board);
 }
 
 export default renderApp;

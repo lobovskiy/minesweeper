@@ -1,9 +1,9 @@
-import { updateMinefieldContainer } from '.';
-
 const minefield = document.createElement('div');
 minefield.classList.add('minefield');
 
 function updateMinefield(cells, numberOfColumns) {
+  minefield.innerHTML = '';
+
   if (Array.isArray(cells)) {
     cells.forEach((cell, index) => {
       const cellContainer = document.createElement('div');
@@ -13,8 +13,6 @@ function updateMinefield(cells, numberOfColumns) {
   }
 
   minefield.style.gridTemplateColumns = `repeat(${numberOfColumns}, 1fr)`;
-
-  updateMinefieldContainer(minefield);
 }
 
-export default updateMinefield;
+export { minefield, updateMinefield };

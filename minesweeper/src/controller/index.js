@@ -2,13 +2,13 @@ import minesweeper from '../services/game';
 import gameSettings from '../services/settings';
 import gameTimer from '../services/timer';
 
-function initMinefield() {
-  minesweeper.initMinefield(gameSettings.difficulty);
+function initNewGame() {
+  minesweeper.initNewGame(gameSettings.difficulty);
 }
 
 function initGame() {
-  initMinefield();
+  initNewGame();
   gameTimer.reset();
 }
 
-export { initGame, initMinefield };
+export { initGame, initNewGame };

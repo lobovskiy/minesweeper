@@ -1,29 +1,10 @@
+import { toolbar } from './toolbar';
+import { minefield } from './minefield';
 import './style.scss';
 
 const board = document.createElement('div');
 board.classList.add('gameboard');
 
-const toolbarContainer = document.createElement('div');
-toolbarContainer.classList.add('gameboard__toolbar');
+board.append(toolbar, minefield);
 
-const minefieldContainer = document.createElement('div');
-minefieldContainer.classList.add('gameboard__minefield');
-
-board.append(toolbarContainer);
-board.append(minefieldContainer);
-
-function renderBoard(container) {
-  container.append(board);
-}
-
-function updateToolbarContainer(element) {
-  toolbarContainer.innerHTML = '';
-  toolbarContainer.append(element);
-}
-
-function updateMinefieldContainer(element) {
-  minefieldContainer.innerHTML = '';
-  minefieldContainer.append(element);
-}
-
-export { board, renderBoard, updateToolbarContainer, updateMinefieldContainer };
+export default board;
