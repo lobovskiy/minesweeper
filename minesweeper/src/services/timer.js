@@ -8,14 +8,18 @@ class Timer {
 
   reset() {
     this.milliseconds = 0;
-    updateTimer(this.milliseconds);
+    this.render();
   }
 
   start() {
     this.interval = setInterval(() => {
       this.milliseconds += 1000;
-      updateTimer(this.milliseconds);
+      this.render();
     }, 1000);
+  }
+
+  render() {
+    updateTimer(this.milliseconds);
   }
 }
 

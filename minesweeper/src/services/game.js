@@ -3,33 +3,33 @@ import { updateToolbar } from '../view/board/toolbar';
 import { updateMinefield } from '../view/board/minefield';
 
 class Game {
-  constructor() {
-    const difficulty = DIFFICULTY.beginner;
-
-    this.width = MINEFIELD_SIZE_BY_DIFFICULTY[difficulty].width;
-    this.height = MINEFIELD_SIZE_BY_DIFFICULTY[difficulty].height;
-    this.cells = this.initCells();
+  constructor(difficulty) {
+    this.difficulty = difficulty || DIFFICULTY.beginner;
+    this.width = MINEFIELD_SIZE_BY_DIFFICULTY[this.difficulty].width;
+    this.height = MINEFIELD_SIZE_BY_DIFFICULTY[this.difficulty].height;
+    this.cells = Game.initCells(this.width, this.height);
   }
 
-  initCells() {
+  static initCells(width, height) {
     const initialCell = {
       isOpen: false,
       isFlagged: false,
       isMine: undefined,
       label: null,
     };
-    const cellsAmount = this.width * this.height;
+    const cellsAmount = width * height;
 
     return new Array(cellsAmount).fill(initialCell);
   }
 
   initNewGame(difficulty) {
-    this.width = MINEFIELD_SIZE_BY_DIFFICULTY[difficulty].width;
-    this.height = MINEFIELD_SIZE_BY_DIFFICULTY[difficulty].height;
-    this.cells = this.initCells();
+    this.constructor(difficulty);
+    this.render(difficulty);
+  }
 
+  render() {
     updateToolbar();
-    updateMinefield(this.cells, this.width, difficulty);
+    updateMinefield(this.cells, this.width, this.difficulty);
   }
 }
 
