@@ -20,30 +20,6 @@ const DIFFICULTY = {
   expert: 'expert',
 };
 
-const STYLES_BY_SCREEN_SIZE = {
-  [SCREEN_SIZES.mobile]: {
-    CELL_SIZE_BY_DIFFICULTY: {
-      [DIFFICULTY.beginner]: '50px',
-      [DIFFICULTY.intermediate]: '40px',
-      [DIFFICULTY.expert]: '20px',
-    },
-  },
-  [SCREEN_SIZES.tablet]: {
-    CELL_SIZE_BY_DIFFICULTY: {
-      [DIFFICULTY.beginner]: '50px',
-      [DIFFICULTY.intermediate]: '40px',
-      [DIFFICULTY.expert]: '20px',
-    },
-  },
-  [SCREEN_SIZES.desktop]: {
-    CELL_SIZE_BY_DIFFICULTY: {
-      [DIFFICULTY.beginner]: '50px',
-      [DIFFICULTY.intermediate]: '40px',
-      [DIFFICULTY.expert]: '20px',
-    },
-  },
-};
-
 const MINEFIELD_SIZE = {
   [DIFFICULTY.beginner]: {
     width: 9,
@@ -64,6 +40,5 @@ export {
   SCREEN_SIZES_MIN_WIDTHS,
   SCREEN_SIZES_ASCENDING,
   DIFFICULTY,
-  STYLES_BY_SCREEN_SIZE,
   MINEFIELD_SIZE,
 };
