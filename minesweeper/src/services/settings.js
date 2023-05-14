@@ -1,8 +1,8 @@
-import { DIFFICULTY, MINEFIELD_SIZE_BY_DIFFICULTY } from '../constants';
+import { DIFFICULTIES, MINEFIELD_SIZE_BY_DIFFICULTY } from '../constants';
 
 class Settings {
   constructor() {
-    this.difficulty = DIFFICULTY.beginner;
+    this.difficulty = DIFFICULTIES.beginner;
     this.boardSize = MINEFIELD_SIZE_BY_DIFFICULTY[this.difficulty];
     this.sound = true;
   }

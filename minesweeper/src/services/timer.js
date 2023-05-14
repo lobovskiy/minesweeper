@@ -1,5 +1,3 @@
-import { updateTimer } from '../view/board/toolbar';
-
 class Timer {
   constructor() {
     this.milliseconds = 0;
@@ -8,18 +6,13 @@ class Timer {
 
   reset() {
     this.milliseconds = 0;
-    this.render();
   }
 
-  start() {
+  start(callback) {
     this.interval = setInterval(() => {
       this.milliseconds += 1000;
-      this.render();
     }, 1000);
-  }
-
-  render() {
-    updateTimer(this.milliseconds);
+    callback(this.milliseconds);
   }
 }
 

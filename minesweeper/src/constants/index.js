@@ -1,22 +1,22 @@
-const DIFFICULTY = {
+const DIFFICULTIES = {
   beginner: 'beginner',
   intermediate: 'intermediate',
   expert: 'expert',
 };
 
 const MINEFIELD_SIZE_BY_DIFFICULTY = {
-  [DIFFICULTY.beginner]: {
+  [DIFFICULTIES.beginner]: {
     width: 8,
     height: 8,
   },
-  [DIFFICULTY.intermediate]: {
+  [DIFFICULTIES.intermediate]: {
     width: 16,
     height: 16,
   },
-  [DIFFICULTY.expert]: {
+  [DIFFICULTIES.expert]: {
     width: 30,
     height: 16,
   },
 };
 
-export { DIFFICULTY, MINEFIELD_SIZE_BY_DIFFICULTY };
+export { DIFFICULTIES, MINEFIELD_SIZE_BY_DIFFICULTY };

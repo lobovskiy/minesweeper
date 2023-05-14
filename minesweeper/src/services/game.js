@@ -1,10 +1,8 @@
-import { MINEFIELD_SIZE_BY_DIFFICULTY, DIFFICULTY } from '../constants';
-import { updateToolbar } from '../view/board/toolbar';
-import { updateMinefield } from '../view/board/minefield';
+import { MINEFIELD_SIZE_BY_DIFFICULTY, DIFFICULTIES } from '../constants';
 
 class Game {
   constructor(difficulty) {
-    this.difficulty = difficulty || DIFFICULTY.beginner;
+    this.difficulty = difficulty || DIFFICULTIES.beginner;
     this.width = MINEFIELD_SIZE_BY_DIFFICULTY[this.difficulty].width;
     this.height = MINEFIELD_SIZE_BY_DIFFICULTY[this.difficulty].height;
     this.cells = Game.initCells(this.width, this.height);
@@ -24,12 +22,6 @@ class Game {
 
   initNewGame(difficulty) {
     this.constructor(difficulty);
-    this.render(difficulty);
-  }
-
-  render() {
-    updateToolbar();
-    updateMinefield(this.cells, this.width, this.difficulty);
   }
 }
 

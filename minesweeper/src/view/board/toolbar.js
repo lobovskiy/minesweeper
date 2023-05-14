@@ -1,12 +1,9 @@
 import { toggleDarkThemeClass } from '..';
 import { updateToolbarContainer } from '.';
+import dropdownNewGame from './dropdown-new-game';
 
 const toolbar = document.createElement('div');
 toolbar.classList.add('toolbar');
-
-const btnStartNewGame = document.createElement('button');
-btnStartNewGame.classList.add('button');
-btnStartNewGame.innerHTML = 'New game';
 
 const btnSaveGame = document.createElement('button');
 btnSaveGame.classList.add('button');
@@ -33,7 +30,7 @@ const timerContainer = document.createElement('div');
 timerContainer.classList.add('timer');
 
 toolbar.append(
-  btnStartNewGame,
+  dropdownNewGame,
   btnSaveGame,
   btnLoadSavedGame,
   timerContainer,
@@ -42,11 +39,11 @@ toolbar.append(
   btnToggleColorTheme,
 );
 
-function updateToolbar() {
+function renderToolbar() {
   updateToolbarContainer(toolbar);
 }
 
-function updateTimer(milliseconds) {
+function renderTimer(milliseconds = 0) {
   const ISOStringMinutesStartIndex = 14;
   const ISOStringSecondsEndIndex = 18;
   const mmss = new Date(milliseconds)
@@ -56,4 +53,4 @@ function updateTimer(milliseconds) {
   timerContainer.innerHTML = mmss;
 }
 
-export { toolbar, updateToolbar, updateTimer };
+export { toolbar, renderToolbar, renderTimer };

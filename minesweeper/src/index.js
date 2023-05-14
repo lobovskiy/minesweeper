@@ -1,8 +1,6 @@
-import { initNewGame } from './controller';
-import { renderGameBoard } from './view/board';
+import { initGame } from './controller';
 import './styles/style.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderGameBoard();
-  initNewGame();
+  initGame();
 });
