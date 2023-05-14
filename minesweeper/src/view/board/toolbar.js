@@ -1,3 +1,4 @@
+import gameTimer from '../../services/timer';
 import { toggleDarkThemeClass } from '..';
 import { updateToolbarContainer } from '.';
 import dropdownNewGame from './dropdownNewGame';
@@ -43,10 +44,10 @@ function renderToolbar() {
   updateToolbarContainer(toolbar);
 }
 
-function renderTimer(milliseconds = 0) {
+function renderTimer() {
   const ISOStringMinutesStartIndex = 14;
   const ISOStringSecondsEndIndex = 18;
-  const mmss = new Date(milliseconds)
+  const mmss = new Date(gameTimer.milliseconds || 0)
     .toISOString()
     .slice(ISOStringMinutesStartIndex, ISOStringSecondsEndIndex + 1);
 

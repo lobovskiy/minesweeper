@@ -72,13 +72,11 @@ class Game {
     this.setLabels();
   }
 
-  openCell(index, callbackRender) {
+  openCell(index) {
     if (!this.isGameStarted) {
       this.setMines(index);
       this.isGameStarted = true;
     }
-
-    callbackRender();
   }
 }
 

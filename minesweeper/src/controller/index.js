@@ -15,20 +15,19 @@ function openCell(index) {
     startTimer();
   }
 
-  minesweeper.openCell(index, updateMinefield);
-}
-
-function renderMinefield(difficulty) {
-  if (difficulty) {
-    minesweeper.initNewGame(difficulty);
-  }
-
+  minesweeper.openCell(index);
   updateMinefield(openCell);
 }
 
 function startNewGame(difficulty) {
-  gameTimer.reset(renderTimer);
-  renderMinefield(difficulty);
+  gameTimer.reset();
+
+  if (difficulty) {
+    minesweeper.initNewGame(difficulty);
+  }
+
+  renderTimer();
+  updateMinefield(openCell);
 }
 
 function initGame() {

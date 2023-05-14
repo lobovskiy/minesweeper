@@ -4,10 +4,9 @@ class Timer {
     this.interval = undefined;
   }
 
-  reset(callbackRender) {
+  reset() {
     clearInterval(this.interval);
     this.milliseconds = 0;
-    callbackRender(this.milliseconds);
   }
 
   start(callbackRender) {
