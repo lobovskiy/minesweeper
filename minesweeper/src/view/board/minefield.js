@@ -3,13 +3,10 @@ import { updateMinefieldContainer } from '.';
 const minefield = document.createElement('div');
 minefield.classList.add('minefield');
 
-function setDifficultyDataAttribute(attribute) {
-  minefield.setAttribute('data-difficulty', attribute);
-}
-
-function updateMinefield(cells, numberOfColumns) {
+function updateMinefield(cells, numberOfColumns, difficulty) {
   if (Array.isArray(cells)) {
     minefield.innerHTML = '';
+    minefield.setAttribute('data-difficulty', difficulty);
     minefield.style.gridTemplateColumns = `repeat(${numberOfColumns}, 1fr)`;
 
     cells.forEach(() => {
@@ -22,4 +19,4 @@ function updateMinefield(cells, numberOfColumns) {
   }
 }
 
-export { minefield, setDifficultyDataAttribute, updateMinefield };
+export { minefield, updateMinefield };
