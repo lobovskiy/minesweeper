@@ -1,10 +1,13 @@
 import { MINE_FIELD_SIZE, DIFFICULTY } from '../data/settings';
+import updateMinefield from '../view/board/minefield';
 
 class Game {
   constructor() {
     const difficulty = DIFFICULTY.beginner;
 
-    this.initMineField(difficulty);
+    this.width = MINE_FIELD_SIZE[difficulty].width;
+    this.height = MINE_FIELD_SIZE[difficulty].height;
+    this.cells = this.initCells();
   }
 
   initCells() {
@@ -19,10 +22,12 @@ class Game {
     return new Array(cellsAmount).fill(initialCell);
   }
 
-  initMineField(difficulty) {
+  initMinefield(difficulty) {
     this.width = MINE_FIELD_SIZE[difficulty].width;
     this.height = MINE_FIELD_SIZE[difficulty].height;
     this.cells = this.initCells();
+
+    updateMinefield(this.cells, this.width);
   }
 }
 
