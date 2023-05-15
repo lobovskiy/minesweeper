@@ -27,7 +27,17 @@ function openCell(index) {
     }
   }
 
-  updateMinefield(openCell, indexFailed);
+  updateMinefield(openCell, toggleFlag, indexFailed);
+}
+
+function toggleFlag(index) {
+  if (!minesweeper.isGameStarted) {
+    startTimer();
+  }
+
+  minesweeper.toggleFlag(index);
+
+  updateMinefield(openCell, toggleFlag);
 }
 
 function startNewGame(difficulty) {
@@ -38,7 +48,7 @@ function startNewGame(difficulty) {
   }
 
   renderTimer();
-  updateMinefield(openCell);
+  updateMinefield(openCell, toggleFlag);
 }
 
 function initGame() {

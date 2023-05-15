@@ -130,6 +130,15 @@ class Game {
       this.openEmptyArea(indexClicked);
     }
   }
+
+  toggleFlag(indexClicked) {
+    if (!this.isGameStarted) {
+      this.setMines(indexClicked);
+      this.isGameStarted = true;
+    }
+
+    this.cells[indexClicked].isFlagged = !this.cells[indexClicked].isFlagged;
+  }
 }
 
 const minesweeper = new Game();

@@ -5,7 +5,7 @@ import minesweeper from '../../services/game';
 const minefield = document.createElement('div');
 minefield.classList.add('minefield');
 
-function updateMinefield(callbackOpenCell, indexFailed) {
+function updateMinefield(callbackOpenCell, callbackToggleFlag, indexFailed) {
   const { cells } = minesweeper;
   const { difficulty } = minesweeper;
   const numberOfColumns = MINEFIELD_SETTINGS_BY_DIFFICULTY[difficulty].width;
@@ -32,13 +32,23 @@ function updateMinefield(callbackOpenCell, indexFailed) {
         }
       }
 
+      if (cell.isFlagged) {
+        cellContainer.innerHTML = 'F';
+      }
+
       if (indexFailed && indexFailed === index) {
         cellContainer.classList.add('cell-failed');
       }
 
       if (!minesweeper.isGameFinished) {
-        cellContainer.addEventListener('click', () => {
-          callbackOpenCell(index);
+        if (!cell.isFlagged) {
+          cellContainer.addEventListener('click', () => {
+            callbackOpenCell(index);
+          });
+        }
+        cellContainer.addEventListener('contextmenu', (event) => {
+          event.preventDefault();
+          callbackToggleFlag(index);
         });
       }
       minefield.append(cellContainer);
