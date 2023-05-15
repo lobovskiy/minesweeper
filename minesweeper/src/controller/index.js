@@ -46,6 +46,21 @@ function toggleFlag(index) {
   updateMinefield(openCell, toggleFlag);
 }
 
+function loadGame() {
+  const savedGame = JSON.parse(localStorage.getItem('savedGame'));
+  const { timer, game } = savedGame;
+
+  gameTimer.reset();
+  gameTimer.set(timer);
+  renderTimer();
+  if (game.isGameStarted) {
+    startTimer();
+  }
+
+  minesweeper.loadGame(game);
+  updateMinefield(openCell, toggleFlag);
+}
+
 function startNewGame(difficulty) {
   gameTimer.reset();
 
@@ -59,7 +74,7 @@ function startNewGame(difficulty) {
 
 function initGame() {
   renderGameBoard();
-  renderToolbar();
+  renderToolbar(loadGame);
   renderDropdownNewGameList(startNewGame);
   startNewGame();
 }

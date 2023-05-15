@@ -19,6 +19,10 @@ class Timer {
   stop() {
     clearInterval(this.interval);
   }
+
+  set(milliseconds) {
+    this.milliseconds = milliseconds;
+  }
 }
 
 const gameTimer = new Timer();

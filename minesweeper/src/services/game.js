@@ -34,6 +34,15 @@ class Game {
     this.constructor(difficulty);
   }
 
+  loadGame(game) {
+    this.difficulty = game.difficulty;
+    this.cells = game.cells;
+    this.isGameStarted = game.isGameStarted;
+    this.isGameFinished = game.isGameFinished;
+    this.isGameLost = game.isGameLost;
+    this.moves = game.moves;
+  }
+
   openAllCells() {
     this.cells.forEach((cell, index) => {
       if (!this.cells[index].isOpen) {

@@ -2,6 +2,7 @@ import gameTimer from '../../services/timer';
 import { toggleDarkThemeClass } from '..';
 import { updateToolbarContainer } from '.';
 import dropdownNewGame from './dropdownNewGame';
+import minesweeper from '../../services/game';
 
 const toolbar = document.createElement('div');
 toolbar.classList.add('toolbar');
@@ -9,6 +10,12 @@ toolbar.classList.add('toolbar');
 const btnSaveGame = document.createElement('button');
 btnSaveGame.classList.add('button');
 btnSaveGame.innerHTML = 'Save game';
+btnSaveGame.addEventListener('click', () => {
+  localStorage.setItem(
+    'savedGame',
+    JSON.stringify({ timer: gameTimer.milliseconds, game: minesweeper }),
+  );
+});
 
 const btnLoadSavedGame = document.createElement('button');
 btnLoadSavedGame.classList.add('button');
@@ -40,7 +47,8 @@ toolbar.append(
   btnToggleColorTheme,
 );
 
-function renderToolbar() {
+function renderToolbar(callbackLoadGame) {
+  btnLoadSavedGame.addEventListener('click', () => callbackLoadGame());
   updateToolbarContainer(toolbar);
 }
 
