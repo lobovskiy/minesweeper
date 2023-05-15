@@ -47,8 +47,9 @@ toolbar.append(
   btnToggleColorTheme,
 );
 
-function renderToolbar(callbackLoadGame) {
+function renderToolbar(callbackLoadGame, showStats) {
   btnLoadSavedGame.addEventListener('click', () => callbackLoadGame());
+  btnShowStats.addEventListener('click', () => showStats());
   updateToolbarContainer(toolbar);
 }
 

@@ -14,11 +14,21 @@ minefieldContainer.classList.add('gameboard__minefield');
 
 board.append(toolbarContainer, minefieldContainer);
 
+const modal = document.createElement('div');
+modal.classList.add('modal', 'hidden');
+modal.addEventListener('click', () => {
+  modal.classList.add('hidden');
+});
+
+const modalContent = document.createElement('div');
+modalContent.classList.add('modal__content');
+modal.append(modalContent);
+
 const messageContainer = document.createElement('div');
 messageContainer.classList.add('message');
 
 function renderGameBoard() {
-  body.append(board);
+  body.append(board, modal);
 }
 
 function updateToolbarContainer(element) {
@@ -43,6 +53,55 @@ function renderWinMessage() {
   minefieldContainer.append(messageContainer);
 }
 
+function showModal() {
+  const stats = JSON.parse(localStorage.getItem('stats'));
+
+  if (
+    !stats ||
+    !Array.isArray(stats) ||
+    (Array.isArray(stats) && !stats.length)
+  ) {
+    modalContent.innerHTML = 'There is not any stats yet!';
+  } else {
+    modalContent.innerHTML = '';
+
+    stats.reverse();
+
+    const statsContainer = document.createElement('div');
+    statsContainer.classList.add('stats');
+    statsContainer.innerHTML = `
+      <div>Date and time</div>
+      <div>Result</div>
+      <div>Seconds</div>
+      <div>Moves</div>
+    `;
+
+    stats.forEach((stat) => {
+      const dateTimeContainer = document.createElement('div');
+      const date = new Date(stat.dateTime);
+      dateTimeContainer.innerHTML = `${date.getDate()}.${
+        date.getMonth() + 1
+      }.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+      const resultContainer = document.createElement('div');
+      resultContainer.innerHTML = stat.result;
+      const secondsContainer = document.createElement('div');
+      secondsContainer.innerHTML = stat.seconds;
+      const movesContainer = document.createElement('div');
+      movesContainer.innerHTML = stat.moves;
+
+      statsContainer.append(
+        dateTimeContainer,
+        resultContainer,
+        secondsContainer,
+        movesContainer,
+      );
+    });
+
+    modalContent.append(statsContainer);
+  }
+  modal.classList.remove('hidden');
+}
+
 export {
   board,
   renderGameBoard,
@@ -50,4 +109,5 @@ export {
   updateMinefieldContainer,
   renderLoseMessage,
   renderWinMessage,
+  showModal,
 };

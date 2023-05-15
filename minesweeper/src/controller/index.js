@@ -5,6 +5,7 @@ import {
   renderGameBoard,
   renderLoseMessage,
   renderWinMessage,
+  showModal,
 } from '../view/board';
 import { renderToolbar, renderTimer } from '../view/board/toolbar';
 import { updateMinefield } from '../view/board/minefield';
@@ -28,11 +29,28 @@ function openCell(index) {
   if (minesweeper.isGameFinished) {
     gameTimer.stop();
 
+    const statsObj = {
+      dateTime: new Date(),
+      seconds: gameTimer.milliseconds / 1000,
+      moves: minesweeper.moves,
+    };
+
     if (minesweeper.isGameLost) {
       renderLoseMessage();
+      statsObj.result = 'Lose';
     } else {
       renderWinMessage();
+      statsObj.result = 'Win';
     }
+
+    const stats = JSON.parse(localStorage.getItem('stats')) || [];
+    stats.push(statsObj);
+
+    if (stats.length > 10) {
+      stats.shift();
+    }
+
+    localStorage.setItem('stats', JSON.stringify(stats));
   }
 }
 
@@ -61,6 +79,10 @@ function loadGame() {
   updateMinefield(openCell, toggleFlag);
 }
 
+function showStats() {
+  showModal('text');
+}
+
 function startNewGame(difficulty) {
   gameTimer.reset();
 
@@ -74,7 +96,7 @@ function startNewGame(difficulty) {
 
 function initGame() {
   renderGameBoard();
-  renderToolbar(loadGame);
+  renderToolbar(loadGame, showStats);
   renderDropdownNewGameList(startNewGame);
   startNewGame();
 }
