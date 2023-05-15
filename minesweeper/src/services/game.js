@@ -56,10 +56,10 @@ class Game {
     });
   }
 
-  setMines(clickedIndex) {
+  setMines(indexClicked) {
     const cellsIndexes = Array.from(Array(this.cells.length).keys());
     const cellsIndexesWithoutClicked = cellsIndexes.filter(
-      (cellIndex) => cellIndex !== clickedIndex,
+      (cellIndex) => cellIndex !== indexClicked,
     );
     const cellsIndexesShuffled = shuffleArray(cellsIndexesWithoutClicked);
     const minesIndexes = cellsIndexesShuffled.slice(
@@ -83,16 +83,51 @@ class Game {
     this.isGameLost = true;
   }
 
-  openCell(index) {
+  openEmptyArea(indexClicked) {
+    if (!this.cells[indexClicked].label) {
+      const checkedEmptyCellsIndexes = [];
+
+      const openAdjacentCellsOfEmptyCell = (index) => {
+        if (checkedEmptyCellsIndexes.includes(index)) {
+          return;
+        }
+
+        checkedEmptyCellsIndexes.push(index);
+
+        const adjacentCellsIndexes = getAdjacentCellsIndexes(
+          index,
+          this.difficulty,
+        );
+
+        adjacentCellsIndexes.forEach((adjacentCellsIndex) => {
+          this.cells[adjacentCellsIndex].isOpen = true;
+        });
+
+        const adjacentEmptyCellsIndexes = adjacentCellsIndexes.filter(
+          (adjacentCellsIndex) => !this.cells[adjacentCellsIndex].label,
+        );
+
+        for (let i = 0; i < adjacentEmptyCellsIndexes.length; i += 1) {
+          const emptyCellsIndex = adjacentEmptyCellsIndexes[i];
+          openAdjacentCellsOfEmptyCell(emptyCellsIndex);
+        }
+      };
+
+      openAdjacentCellsOfEmptyCell(indexClicked);
+    }
+  }
+
+  openCell(indexClicked) {
     if (!this.isGameStarted) {
-      this.setMines(index);
+      this.setMines(indexClicked);
       this.isGameStarted = true;
     }
 
-    if (this.cells[index].isMine) {
+    if (this.cells[indexClicked].isMine) {
       this.loseGame();
     } else {
-      this.cells[index].isOpen = true;
+      this.cells[indexClicked].isOpen = true;
+      this.openEmptyArea(indexClicked);
     }
   }
 }
