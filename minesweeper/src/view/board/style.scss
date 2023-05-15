@@ -37,8 +37,15 @@
       border: 2px outset #ececec;
     }
 
-    &:active,
+    &:active {
+      &::after {
+        border: none;
+      }
+    }
+
     &_open {
+      cursor: auto;
+
       &::after {
         border: none;
       }
