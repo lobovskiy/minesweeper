@@ -33,6 +33,14 @@ class Game {
     this.constructor(difficulty);
   }
 
+  openAllCells() {
+    this.cells.forEach((cell, index) => {
+      if (!this.cells[index].isOpen) {
+        this.cells[index].isOpen = true;
+      }
+    });
+  }
+
   setLabels() {
     this.cells.forEach((cell, index) => {
       if (!cell.isMine) {
@@ -75,12 +83,9 @@ class Game {
   }
 
   loseGame() {
-    this.cells.forEach((cell, index) => {
-      this.cells[index].isOpen = true;
-    });
-
     this.isGameFinished = true;
     this.isGameLost = true;
+    this.openAllCells();
   }
 
   openEmptyArea(indexClicked) {
@@ -117,6 +122,15 @@ class Game {
     }
   }
 
+  checkIfGameIsWon() {
+    const notOpenedCells = this.cells.filter((cell) => !cell.isOpen);
+
+    if (notOpenedCells.every((cell) => cell.isMine)) {
+      this.isGameFinished = true;
+      this.openAllCells();
+    }
+  }
+
   openCell(indexClicked) {
     if (!this.isGameStarted) {
       this.setMines(indexClicked);
@@ -128,6 +142,7 @@ class Game {
     } else {
       this.cells[indexClicked].isOpen = true;
       this.openEmptyArea(indexClicked);
+      this.checkIfGameIsWon();
     }
   }
 
