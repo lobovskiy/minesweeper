@@ -1,4 +1,6 @@
 import { body } from '..';
+import minesweeper from '../../services/game';
+import gameTimer from '../../services/timer';
 import './style.scss';
 
 const board = document.createElement('div');
@@ -11,6 +13,9 @@ const minefieldContainer = document.createElement('div');
 minefieldContainer.classList.add('gameboard__minefield');
 
 board.append(toolbarContainer, minefieldContainer);
+
+const messageContainer = document.createElement('div');
+messageContainer.classList.add('message');
 
 function renderGameBoard() {
   body.append(board);
@@ -26,9 +31,23 @@ function updateMinefieldContainer(element) {
   minefieldContainer.append(element);
 }
 
+function renderLoseMessage() {
+  messageContainer.innerHTML = 'Game over. Try again';
+  minefieldContainer.append(messageContainer);
+}
+
+function renderWinMessage() {
+  messageContainer.innerHTML = `Hooray! You found all mines in ${
+    gameTimer.milliseconds / 1000
+  } seconds and ${minesweeper.moves} moves!`;
+  minefieldContainer.append(messageContainer);
+}
+
 export {
   board,
   renderGameBoard,
   updateToolbarContainer,
   updateMinefieldContainer,
+  renderLoseMessage,
+  renderWinMessage,
 };

@@ -8,6 +8,7 @@ class Game {
     this.isGameStarted = false;
     this.isGameFinished = false;
     this.isGameLost = false;
+    this.moves = 0;
   }
 
   static initCells(difficulty) {
@@ -141,6 +142,7 @@ class Game {
       this.loseGame();
     } else {
       this.cells[indexClicked].isOpen = true;
+      this.moves += 1;
       this.openEmptyArea(indexClicked);
       this.checkIfGameIsWon();
     }

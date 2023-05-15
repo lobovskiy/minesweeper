@@ -1,7 +1,11 @@
 import gameTimer from '../services/timer';
 import minesweeper from '../services/game';
 
-import { renderGameBoard } from '../view/board';
+import {
+  renderGameBoard,
+  renderLoseMessage,
+  renderWinMessage,
+} from '../view/board';
 import { renderToolbar, renderTimer } from '../view/board/toolbar';
 import { updateMinefield } from '../view/board/minefield';
 import { renderDropdownNewGameList } from '../view/board/dropdownNewGame';
@@ -17,17 +21,19 @@ function openCell(index) {
 
   minesweeper.openCell(index);
 
-  let indexFailed;
+  const indexFailed = minesweeper.isGameLost ? index : null;
+
+  updateMinefield(openCell, toggleFlag, indexFailed);
 
   if (minesweeper.isGameFinished) {
     gameTimer.stop();
 
     if (minesweeper.isGameLost) {
-      indexFailed = index;
+      renderLoseMessage();
+    } else {
+      renderWinMessage();
     }
   }
-
-  updateMinefield(openCell, toggleFlag, indexFailed);
 }
 
 function toggleFlag(index) {
