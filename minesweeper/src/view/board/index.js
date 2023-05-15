@@ -1,6 +1,7 @@
 import { body } from '..';
 import minesweeper from '../../services/game';
 import gameTimer from '../../services/timer';
+import { formatDateTimeOnlyString } from '../../utils.js';
 import './style.scss';
 
 const board = document.createElement('div');
@@ -78,10 +79,7 @@ function showModal() {
 
     stats.forEach((stat) => {
       const dateTimeContainer = document.createElement('div');
-      const date = new Date(stat.dateTime);
-      dateTimeContainer.innerHTML = `${date.getDate()}.${
-        date.getMonth() + 1
-      }.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+      dateTimeContainer.innerHTML = formatDateTimeOnlyString(stat.dateTime);
       const resultContainer = document.createElement('div');
       resultContainer.innerHTML = stat.result;
       const secondsContainer = document.createElement('div');

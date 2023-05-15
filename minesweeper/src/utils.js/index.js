@@ -60,4 +60,22 @@ function getAdjacentCellsIndexes(index, difficulty) {
   return adjacentIndexes.sort((a, b) => a - b);
 }
 
-export { shuffleArray, getAdjacentCellsIndexes };
+function formatDateTimeOnlyString(string) {
+  const date = new Date(string);
+
+  const addZero = (num) => {
+    if (num < 10) {
+      return `0${num}`;
+    }
+
+    return num;
+  };
+
+  return `${addZero(date.getDate())}.${addZero(
+    date.getMonth() + 1,
+  )}.${date.getFullYear()} ${addZero(date.getHours())}:${addZero(
+    date.getMinutes(),
+  )}`;
+}
+
+export { shuffleArray, getAdjacentCellsIndexes, formatDateTimeOnlyString };
