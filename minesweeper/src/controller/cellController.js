@@ -1,6 +1,7 @@
 import minesweeperService from '../services/Minesweeper';
 import { startTimer, stopTimer } from './timerController';
 import { addStats } from './statsController';
+import { playSoundOpenCell, playSoundToggleFlag } from './soundController';
 import showNotification from './notificationController';
 
 function checkIfGameIsFinished() {
@@ -20,6 +21,7 @@ function openCell(index) {
   // const indexFailed = minesweeperService.isGameLost ? index : null;
 
   checkIfGameIsFinished();
+  playSoundOpenCell();
 }
 
 function toggleFlag(index) {
@@ -28,6 +30,7 @@ function toggleFlag(index) {
   }
 
   minesweeperService.toggleFlag(index);
+  playSoundToggleFlag();
 }
 
 export { openCell, toggleFlag };

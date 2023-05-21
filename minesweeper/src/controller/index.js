@@ -7,7 +7,7 @@ import {
 } from './timerController';
 import updateMinefield from './minefieldController';
 import { showStats } from './statsController';
-import toggleSound from './soundController';
+import { toggleSound } from './soundController';
 import { renderApp, toggleDarkThemeClass } from '../view';
 import { renderToolbarComponents } from '../view/toolbar/toolbar';
 import { updateMinefieldRenderParams } from '../view/minefiled/minefiled';
