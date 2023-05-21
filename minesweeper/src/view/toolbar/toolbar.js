@@ -1,5 +1,5 @@
 import { renderButton, renderDropdown } from '../components';
-import { timer } from './timer/timer';
+import { timer } from '../timer/timer';
 import { DIFFICULTIES } from '../../constants';
 
 const toolbar = document.createElement('div');

@@ -1,5 +1,5 @@
 import timerService from '../services/Timer';
-import { refreshTimer } from '../view/toolbar/timer/timer';
+import { refreshTimer } from '../view/timer/timer';
 import { formatTime } from '../utils.js';
 
 function updateTimer() {
