@@ -1,7 +1,8 @@
 import { renderButton, renderDropdown } from '../components';
 import { timer } from '../timer/timer';
-import { DIFFICULTIES } from '../../constants';
+import { moves } from './moves/moves';
 import { renderButtonToggleSound } from './buttonToggleSound';
+import { DIFFICULTIES } from '../../constants';
 
 const toolbar = document.createElement('div');
 toolbar.classList.add('toolbar');
@@ -43,11 +44,16 @@ function renderToolbarComponents(callbacks = {}) {
   timerContainer.classList.add('toolbar__timer');
   timerContainer.append(timer);
 
+  const movesContainer = document.createElement('div');
+  movesContainer.classList.add('toolbar__moves');
+  movesContainer.append(moves);
+
   toolbar.append(
     dropdownNewGame,
     buttonSaveGame,
     buttonLoadGame,
     timerContainer,
+    movesContainer,
     buttonShowStats,
     buttonToggleSound,
     buttonToggleColorTheme,

@@ -143,11 +143,12 @@ class Minesweeper {
       this.isGameStarted = true;
     }
 
+    this.moves += 1;
+
     if (this.cells[indexClicked].isMine) {
       this.loseGame();
     } else {
       this.cells[indexClicked].open();
-      this.moves += 1;
       this.openEmptyArea(indexClicked);
       this.checkIfGameIsWon();
     }

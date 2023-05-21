@@ -3,6 +3,7 @@ import { startTimer, stopTimer } from './timerController';
 import { addStats } from './statsController';
 import { playSoundOpenCell, playSoundToggleFlag } from './soundController';
 import showNotification from './notificationController';
+import { updateMoves } from '../view/toolbar/moves/moves';
 
 function checkIfGameIsFinished() {
   if (minesweeperService.isGameFinished) {
@@ -20,6 +21,7 @@ function openCell(index) {
   minesweeperService.openCell(index);
   // const indexFailed = minesweeperService.isGameLost ? index : null;
 
+  updateMoves();
   checkIfGameIsFinished();
   playSoundOpenCell();
 }
