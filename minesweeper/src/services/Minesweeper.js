@@ -39,9 +39,9 @@ class Minesweeper {
   }
 
   openAllCells() {
-    this.cells.forEach((cell, index) => {
-      if (!this.cells[index].isOpen) {
-        this.cells[index].isOpen = true;
+    this.cells.forEach((cell) => {
+      if (!cell.isOpen) {
+        cell.open();
       }
     });
   }
@@ -63,7 +63,7 @@ class Minesweeper {
         });
 
         if (minesAmount) {
-          this.cells[index].label = minesAmount;
+          cell.setLabel(minesAmount);
         }
       }
     });
@@ -71,18 +71,18 @@ class Minesweeper {
 
   setMines(indexClicked) {
     const cellsIndexes = Array.from(Array(this.cells.length).keys());
-    const cellsIndexesWithoutClicked = cellsIndexes.filter(
+    const cellsIndexesExceptClicked = cellsIndexes.filter(
       (cellIndex) => cellIndex !== indexClicked,
     );
-    const cellsIndexesShuffled = shuffleArray(cellsIndexesWithoutClicked);
-    const minesIndexes = cellsIndexesShuffled.slice(
+    const cellsIndexesShuffled = shuffleArray(cellsIndexesExceptClicked);
+    const minedCellIndexes = cellsIndexesShuffled.slice(
       0,
       MINEFIELD_SETTINGS_BY_DIFFICULTY[settingsService.getDifficulty()]
         .minesAmount,
     );
 
-    minesIndexes.forEach((mineIndex) => {
-      this.cells[mineIndex].isMine = true;
+    minedCellIndexes.forEach((minedCellIndex) => {
+      this.cells[minedCellIndex].setMine();
     });
 
     this.setLabels();
@@ -111,7 +111,7 @@ class Minesweeper {
         );
 
         adjacentCellsIndexes.forEach((adjacentCellsIndex) => {
-          this.cells[adjacentCellsIndex].isOpen = true;
+          this.cells[adjacentCellsIndex].open();
         });
 
         const adjacentEmptyCellsIndexes = adjacentCellsIndexes.filter(
@@ -146,7 +146,7 @@ class Minesweeper {
     if (this.cells[indexClicked].isMine) {
       this.loseGame();
     } else {
-      this.cells[indexClicked].isOpen = true;
+      this.cells[indexClicked].open();
       this.moves += 1;
       this.openEmptyArea(indexClicked);
       this.checkIfGameIsWon();
@@ -159,7 +159,7 @@ class Minesweeper {
       this.isGameStarted = true;
     }
 
-    this.cells[indexClicked].isFlagged = !this.cells[indexClicked].isFlagged;
+    this.cells[indexClicked].toggleFlag();
   }
 }
 
