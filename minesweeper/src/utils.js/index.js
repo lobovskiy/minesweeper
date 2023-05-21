@@ -60,8 +60,8 @@ function getAdjacentCellsIndexes(index, difficulty) {
   return adjacentIndexes.sort((a, b) => a - b);
 }
 
-function formatDateTimeOnlyString(string) {
-  const date = new Date(string);
+function formatDateTime(value) {
+  const date = new Date(value);
 
   const addZero = (num) => {
     if (num < 10) {
@@ -71,11 +71,24 @@ function formatDateTimeOnlyString(string) {
     return num;
   };
 
-  return `${addZero(date.getDate())}.${addZero(
-    date.getMonth() + 1,
-  )}.${date.getFullYear()} ${addZero(date.getHours())}:${addZero(
-    date.getMinutes(),
-  )}`;
+  const DD = addZero(date.getDate());
+  const MM = addZero(date.getMonth() + 1);
+  const YYYY = date.getFullYear();
+  const hh = addZero(date.getHours());
+  const mm = addZero(date.getMinutes());
+
+  return `${DD}.${MM}.${YYYY} ${hh}:${mm}`;
 }
 
-export { shuffleArray, getAdjacentCellsIndexes, formatDateTimeOnlyString };
+function formatTime(milliseconds = 0) {
+  const ISOStringMinutesStartIndex = 14;
+  const ISOStringSecondsEndIndex = 18;
+
+  const mmss = new Date(milliseconds)
+    .toISOString()
+    .slice(ISOStringMinutesStartIndex, ISOStringSecondsEndIndex + 1);
+
+  return mmss;
+}
+
+export { shuffleArray, getAdjacentCellsIndexes, formatDateTime, formatTime };

@@ -1,4 +1,4 @@
-.gameboard {
+.minesweeper {
   width: 50em;
   margin-inline: auto;
 }
@@ -54,6 +54,8 @@
 }
 
 .stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  &__table {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
 }

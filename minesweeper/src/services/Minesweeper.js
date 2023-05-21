@@ -1,10 +1,10 @@
 import { MINEFIELD_SETTINGS_BY_DIFFICULTY, DIFFICULTIES } from '../constants';
 import { getAdjacentCellsIndexes, shuffleArray } from '../utils.js';
 
-class Game {
+class Minesweeper {
   constructor(difficulty) {
     this.difficulty = difficulty || DIFFICULTIES.beginner;
-    this.cells = Game.initCells(this.difficulty);
+    this.cells = Minesweeper.initCells(this.difficulty);
     this.isGameStarted = false;
     this.isGameFinished = false;
     this.isGameLost = false;
@@ -167,6 +167,6 @@ class Game {
   }
 }
 
-const minesweeper = new Game();
+const minesweeperService = new Minesweeper();
 
-export default minesweeper;
+export default minesweeperService;

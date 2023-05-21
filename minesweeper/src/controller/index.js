@@ -1,104 +1,63 @@
-import gameTimer from '../services/timer';
-import minesweeper from '../services/game';
-
+import minesweeperService from '../services/Minesweeper';
 import {
-  renderGameBoard,
-  renderLoseMessage,
-  renderWinMessage,
-  showModal,
-} from '../view/board';
-import { renderToolbar, renderTimer } from '../view/board/toolbar';
-import { updateMinefield } from '../view/board/minefield';
-import { renderDropdownNewGameList } from '../view/board/dropdownNewGame';
+  getTimeInMilliseconds,
+  startTimer,
+  setTimer,
+  resetTimer,
+} from './timerController';
+import updateMinefield from './minefieldController';
+import { showStats } from './statsController';
+import { renderApp, toggleDarkThemeClass } from '../view';
+import { renderToolbarComponents } from '../view/toolbar/toolbar';
+import { updateMinefieldRenderParams } from '../view/minefiled/minefiled';
 
-function startTimer() {
-  gameTimer.start(renderTimer);
-}
+const LS_KEY_SAVED_GAME = 'savedGame';
 
-function openCell(index) {
-  if (!minesweeper.isGameStarted) {
-    startTimer();
-  }
-
-  minesweeper.openCell(index);
-
-  const indexFailed = minesweeper.isGameLost ? index : null;
-
-  updateMinefield(openCell, toggleFlag, indexFailed);
-
-  if (minesweeper.isGameFinished) {
-    gameTimer.stop();
-
-    const statsObj = {
-      dateTime: new Date(),
-      seconds: gameTimer.milliseconds / 1000,
-      moves: minesweeper.moves,
-    };
-
-    if (minesweeper.isGameLost) {
-      renderLoseMessage();
-      statsObj.result = 'Lose';
-    } else {
-      renderWinMessage();
-      statsObj.result = 'Win';
-    }
-
-    const stats = JSON.parse(localStorage.getItem('stats')) || [];
-    stats.push(statsObj);
-
-    if (stats.length > 10) {
-      stats.shift();
-    }
-
-    localStorage.setItem('stats', JSON.stringify(stats));
-  }
-}
-
-function toggleFlag(index) {
-  if (!minesweeper.isGameStarted) {
-    startTimer();
-  }
-
-  minesweeper.toggleFlag(index);
-
-  updateMinefield(openCell, toggleFlag);
+function saveGame() {
+  localStorage.setItem(
+    LS_KEY_SAVED_GAME,
+    JSON.stringify({
+      timer: getTimeInMilliseconds(),
+      game: minesweeperService,
+    }),
+  );
 }
 
 function loadGame() {
-  const savedGame = JSON.parse(localStorage.getItem('savedGame'));
+  const savedGame = JSON.parse(localStorage.getItem(LS_KEY_SAVED_GAME));
   const { timer, game } = savedGame;
 
-  gameTimer.reset();
-  gameTimer.set(timer);
-  renderTimer();
+  resetTimer();
+  setTimer(timer);
   if (game.isGameStarted) {
     startTimer();
   }
 
-  minesweeper.loadGame(game);
-  updateMinefield(openCell, toggleFlag);
+  minesweeperService.loadGame(game);
+  updateMinefield();
 }
 
-function showStats() {
-  showModal('text');
+function toggleSound() {}
+
+function startNewGame() {
+  resetTimer();
+  updateMinefieldRenderParams();
+  updateMinefield();
 }
 
-function startNewGame(difficulty) {
-  gameTimer.reset();
+function initApp() {
+  const toolbarCallbacks = {
+    startNewGame,
+    saveGame,
+    loadGame,
+    showStats,
+    toggleSound,
+    toggleDarkThemeClass,
+  };
 
-  if (difficulty) {
-    minesweeper.initNewGame(difficulty);
-  }
-
-  renderTimer();
-  updateMinefield(openCell, toggleFlag);
-}
-
-function initGame() {
-  renderGameBoard();
-  renderToolbar(loadGame, showStats);
-  renderDropdownNewGameList(startNewGame);
+  renderApp();
+  renderToolbarComponents(toolbarCallbacks);
   startNewGame();
 }
 
-export { initGame, startNewGame };
+export default initApp;

@@ -9,10 +9,10 @@ class Timer {
     this.milliseconds = 0;
   }
 
-  start(callbackRender) {
+  start(callback) {
     this.interval = setInterval(() => {
       this.milliseconds += 1000;
-      callbackRender(this.milliseconds);
+      callback(this.milliseconds);
     }, 1000);
   }
 
@@ -25,6 +25,6 @@ class Timer {
   }
 }
 
-const gameTimer = new Timer();
+const timerService = new Timer();
 
-export default gameTimer;
+export default timerService;
