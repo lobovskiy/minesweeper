@@ -1,9 +1,13 @@
 const notification = document.createElement('div');
 notification.classList.add('notification');
 
-function refreshNotification(text) {
+function clearNotification() {
   notification.innerHTML = '';
+}
+
+function refreshNotification(text) {
+  clearNotification();
   notification.innerHTML = text;
 }
 
-export { notification, refreshNotification };
+export { notification, clearNotification, refreshNotification };
