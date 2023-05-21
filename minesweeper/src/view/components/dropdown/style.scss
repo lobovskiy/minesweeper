@@ -1,0 +1,9 @@
+.dropdown {
+  &__list {
+    display: none;
+
+    &[data-visible] {
+      display: block;
+    }
+  }
+}

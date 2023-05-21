@@ -39,10 +39,15 @@ function loadGame() {
 
 function toggleSound() {}
 
-function startNewGame() {
-  resetTimer();
+function initMinefield() {
   updateMinefieldRenderParams();
   updateMinefield();
+}
+
+function startNewGame(difficulty) {
+  resetTimer();
+  minesweeperService.initNewGame(difficulty);
+  initMinefield();
 }
 
 function initApp() {
@@ -57,7 +62,7 @@ function initApp() {
 
   renderApp();
   renderToolbarComponents(toolbarCallbacks);
-  startNewGame();
+  initMinefield();
 }
 
 export default initApp;

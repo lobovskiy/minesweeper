@@ -10,18 +10,8 @@ function renderDropdown(selectorLabel, callbackSelectListItem, listItems = []) {
 
   const dropdownList = document.createElement('div');
   dropdownList.classList.add('dropdown__list');
-  listItems.forEach((listItem) => {
-    const item = document.createElement('div');
-    item.innerHTML = listItem;
-    item.addEventListener('click', () => {
-      dropdownList.classList.toggle('hidden');
-      callbackSelectListItem(listItem);
-    });
 
-    dropdownList.append(listItem);
-  });
-
-  function handleClickDropdownSelector() {
+  function toggleDropdownListVisibility() {
     if (dropdownList.hasAttribute('data-visible')) {
       dropdownList.removeAttribute('data-visible');
     } else {
@@ -29,9 +19,24 @@ function renderDropdown(selectorLabel, callbackSelectListItem, listItems = []) {
     }
   }
 
-  dropdownSelector.addEventListener('click', handleClickDropdownSelector);
+  listItems.forEach((listItem) => {
+    const item = document.createElement('div');
+    item.innerHTML = listItem;
+    item.addEventListener('click', () => {
+      toggleDropdownListVisibility();
+      callbackSelectListItem(listItem);
+    });
+
+    dropdownList.append(item);
+  });
+
+  dropdownSelector.addEventListener('click', () =>
+    toggleDropdownListVisibility(),
+  );
 
   dropdown.append(dropdownSelector, dropdownList);
+
+  return dropdown;
 }
 
 export default renderDropdown;
