@@ -1,10 +1,13 @@
-import { DIFFICULTIES, MINEFIELD_SETTINGS_BY_DIFFICULTY } from '../constants';
+import { DIFFICULTIES } from '../constants';
 
 class Settings {
   constructor() {
     this.difficulty = DIFFICULTIES.beginner;
-    this.boardSize = MINEFIELD_SETTINGS_BY_DIFFICULTY[this.difficulty];
     this.sound = true;
+  }
+
+  getDifficulty() {
+    return this.difficulty;
   }
 
   setDifficulty(value) {
@@ -16,6 +19,6 @@ class Settings {
   }
 }
 
-const gameSettings = new Settings();
+const settingsService = new Settings();
 
-export default gameSettings;
+export default settingsService;

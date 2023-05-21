@@ -1,41 +1,36 @@
-import { MINEFIELD_SETTINGS_BY_DIFFICULTY, DIFFICULTIES } from '../constants';
+import settingsService from './Settings';
+import { MINEFIELD_SETTINGS_BY_DIFFICULTY } from '../constants';
 import { getAdjacentCellsIndexes, shuffleArray } from '../utils.js';
+import Cell from './Cell';
 
 class Minesweeper {
-  constructor(difficulty) {
-    this.difficulty = difficulty || DIFFICULTIES.beginner;
-    this.cells = Minesweeper.initCells(this.difficulty);
+  constructor() {
+    this.cells = Minesweeper.initCells();
     this.isGameStarted = false;
     this.isGameFinished = false;
     this.isGameLost = false;
     this.moves = 0;
   }
 
-  static initCells(difficulty) {
+  static initCells() {
+    const difficulty = settingsService.getDifficulty();
     const cellsAmount =
       MINEFIELD_SETTINGS_BY_DIFFICULTY[difficulty].width *
       MINEFIELD_SETTINGS_BY_DIFFICULTY[difficulty].height;
     const cells = [];
-    const initialCell = {
-      isOpen: false,
-      isFlagged: false,
-      isMine: false,
-      label: null,
-    };
 
     for (let i = 0; i < cellsAmount; i += 1) {
-      cells.push({ ...initialCell });
+      cells.push(new Cell());
     }
 
     return cells;
   }
 
-  initNewGame(difficulty) {
-    this.constructor(difficulty);
+  initNewGame() {
+    this.constructor();
   }
 
   loadGame(game) {
-    this.difficulty = game.difficulty;
     this.cells = game.cells;
     this.isGameStarted = game.isGameStarted;
     this.isGameFinished = game.isGameFinished;
@@ -56,7 +51,7 @@ class Minesweeper {
       if (!cell.isMine) {
         const adjacentCellsIndexes = getAdjacentCellsIndexes(
           index,
-          this.difficulty,
+          settingsService.getDifficulty(),
         );
 
         let minesAmount = 0;
@@ -82,7 +77,8 @@ class Minesweeper {
     const cellsIndexesShuffled = shuffleArray(cellsIndexesWithoutClicked);
     const minesIndexes = cellsIndexesShuffled.slice(
       0,
-      MINEFIELD_SETTINGS_BY_DIFFICULTY[this.difficulty].minesAmount,
+      MINEFIELD_SETTINGS_BY_DIFFICULTY[settingsService.getDifficulty()]
+        .minesAmount,
     );
 
     minesIndexes.forEach((mineIndex) => {
@@ -111,7 +107,7 @@ class Minesweeper {
 
         const adjacentCellsIndexes = getAdjacentCellsIndexes(
           index,
-          this.difficulty,
+          settingsService.getDifficulty(),
         );
 
         adjacentCellsIndexes.forEach((adjacentCellsIndex) => {

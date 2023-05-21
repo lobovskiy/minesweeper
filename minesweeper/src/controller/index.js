@@ -10,6 +10,7 @@ import { showStats } from './statsController';
 import { renderApp, toggleDarkThemeClass } from '../view';
 import { renderToolbarComponents } from '../view/toolbar/toolbar';
 import { updateMinefieldRenderParams } from '../view/minefiled/minefiled';
+import settingsService from '../services/Settings';
 
 const LS_KEY_SAVED_GAME = 'savedGame';
 
@@ -46,7 +47,8 @@ function initMinefield() {
 
 function startNewGame(difficulty) {
   resetTimer();
-  minesweeperService.initNewGame(difficulty);
+  settingsService.setDifficulty(difficulty);
+  minesweeperService.initNewGame();
   initMinefield();
 }
 

@@ -1,12 +1,13 @@
 import minesweeperService from '../../services/Minesweeper';
 import renderCell from './cell';
 import { MINEFIELD_SETTINGS_BY_DIFFICULTY } from '../../constants';
+import settingsService from '../../services/Settings';
 
 const minefield = document.createElement('div');
 minefield.classList.add('minefield');
 
 function updateMinefieldRenderParams() {
-  const { difficulty } = minesweeperService;
+  const difficulty = settingsService.getDifficulty();
   const numberOfColumns = MINEFIELD_SETTINGS_BY_DIFFICULTY[difficulty].width;
 
   minefield.setAttribute('data-difficulty', difficulty);
