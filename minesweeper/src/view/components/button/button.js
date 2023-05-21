@@ -4,7 +4,10 @@ function renderButton(label, handleClick) {
   const button = document.createElement('button');
   button.classList.add('button');
   button.innerHTML = label;
-  button.addEventListener('click', handleClick);
+
+  if (handleClick) {
+    button.addEventListener('click', handleClick);
+  }
 
   return button;
 }

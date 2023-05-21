@@ -14,8 +14,8 @@ class Settings {
     this.difficulty = value;
   }
 
-  setSound(value) {
-    this.sound = value;
+  toggleSound() {
+    this.sound = !this.sound;
   }
 }
 

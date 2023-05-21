@@ -1,6 +1,7 @@
 import { renderButton, renderDropdown } from '../components';
 import { timer } from '../timer/timer';
 import { DIFFICULTIES } from '../../constants';
+import { renderButtonToggleSound } from './buttonToggleSound';
 
 const toolbar = document.createElement('div');
 toolbar.classList.add('toolbar');
@@ -32,9 +33,7 @@ function renderToolbarComponents(callbacks = {}) {
   const buttonShowStats = renderButton(LABELS.buttonShowStats, () =>
     showStats(),
   );
-  const buttonToggleSound = renderButton(LABELS.buttonToggleSound, () =>
-    toggleSound(),
-  );
+  const buttonToggleSound = renderButtonToggleSound(toggleSound);
   const buttonToggleColorTheme = renderButton(
     LABELS.buttonToggleColorTheme,
     () => toggleDarkThemeClass(),
