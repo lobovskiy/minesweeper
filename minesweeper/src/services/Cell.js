@@ -3,6 +3,7 @@ class Cell {
     this.isOpen = false;
     this.isFlagged = false;
     this.isMine = false;
+    this.isExploded = false;
     this.label = null;
   }
 
@@ -20,6 +21,10 @@ class Cell {
 
   toggleFlag() {
     this.isFlagged = !this.isFlagged;
+  }
+
+  setExploded() {
+    this.isExploded = true;
   }
 }
 

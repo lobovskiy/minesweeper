@@ -146,6 +146,7 @@ class Minesweeper {
     this.moves += 1;
 
     if (this.cells[indexClicked].isMine) {
+      this.cells[indexClicked].setExploded();
       this.loseGame();
     } else {
       this.cells[indexClicked].open();

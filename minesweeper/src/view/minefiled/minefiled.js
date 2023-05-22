@@ -1,7 +1,8 @@
 import minesweeperService from '../../services/Minesweeper';
-import renderCell from './cell';
+import renderCell from './cell/cell';
 import { MINEFIELD_SETTINGS_BY_DIFFICULTY } from '../../constants';
 import settingsService from '../../services/Settings';
+import './style.scss';
 
 const minefield = document.createElement('div');
 minefield.classList.add('minefield');
