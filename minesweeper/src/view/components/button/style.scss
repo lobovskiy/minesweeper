@@ -1,0 +1,23 @@
+.button {
+  position: relative;
+  padding: 0.2rem 0.6rem;
+  background: #c0c0c0;
+  box-sizing: border-box;
+  border: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 2px outset #ececec;
+  }
+
+  &:active {
+    &::after {
+      border: 2px inset #ececec;
+    }
+  }
+}

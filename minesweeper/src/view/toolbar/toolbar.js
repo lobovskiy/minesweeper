@@ -3,6 +3,7 @@ import { timer } from '../timer/timer';
 import { moves } from './moves/moves';
 import { renderButtonToggleSound } from './buttonToggleSound';
 import { DIFFICULTIES } from '../../constants';
+import './style.scss';
 
 const toolbar = document.createElement('div');
 toolbar.classList.add('toolbar');
@@ -29,6 +30,7 @@ function renderToolbarComponents(callbacks = {}) {
     (item) => startNewGame(item),
     Object.values(DIFFICULTIES),
   );
+  dropdownNewGame.classList.add('toolbar__dropdown');
   const buttonSaveGame = renderButton(LABELS.buttonSaveGame, () => saveGame());
   const buttonLoadGame = renderButton(LABELS.buttonLoadGame, () => loadGame());
   const buttonShowStats = renderButton(LABELS.buttonShowStats, () =>

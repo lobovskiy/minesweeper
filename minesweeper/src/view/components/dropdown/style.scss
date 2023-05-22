@@ -8,7 +8,7 @@
     position: relative;
     padding-right: 1.5em;
 
-    &::after {
+    &::before {
       content: '▼';
       position: absolute;
       right: 0.5em;
@@ -22,9 +22,8 @@
 
     position: absolute;
     display: none;
-    width: 100%;
     left: 0;
-    top: 100%;
+    top: calc(100% + 1px);
     text-align: left;
     background: #c0c0c0;
     box-sizing: border-box;
@@ -52,7 +51,7 @@
 
   &[data-opened] {
     #{$selector} {
-      &::after {
+      &::before {
         transform: rotate(180deg);
       }
     }

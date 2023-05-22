@@ -1,3 +1,5 @@
+import './style.scss';
+
 const modal = document.createElement('div');
 modal.classList.add('modal', 'hidden');
 modal.addEventListener('click', () => {
