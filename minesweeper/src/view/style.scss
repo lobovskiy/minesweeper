@@ -1,6 +1,10 @@
 .minesweeper {
   width: 50em;
   margin-inline: auto;
+
+  &__title {
+    text-align: center;
+  }
 }
 
 .toolbar {

@@ -4,10 +4,16 @@ import { notification } from './notification/notification';
 import { modal } from './modal/modal';
 import './style.scss';
 
+const APP_TITLE = 'Minesweeper';
+
 const body = document.querySelector('body');
 
 const minesweeper = document.createElement('div');
 minesweeper.classList.add('minesweeper');
+
+const title = document.createElement('h1');
+title.classList.add('minesweeper__title');
+title.innerHTML = APP_TITLE;
 
 const toolbarContainer = document.createElement('div');
 toolbarContainer.classList.add('minesweeper__toolbar');
@@ -21,7 +27,13 @@ const notificationContainer = document.createElement('div');
 notificationContainer.classList.add('minesweeper__notification');
 notificationContainer.append(notification);
 
-minesweeper.append(toolbarContainer, minefieldContainer, notification, modal);
+minesweeper.append(
+  title,
+  toolbarContainer,
+  minefieldContainer,
+  notification,
+  modal,
+);
 
 function toggleDarkThemeClass() {
   body.classList.toggle('dark-mode');
