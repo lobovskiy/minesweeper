@@ -1,10 +1,19 @@
 class Cell {
-  constructor() {
-    this.isOpen = false;
-    this.isFlagged = false;
-    this.isMine = false;
-    this.isExploded = false;
-    this.label = null;
+  constructor(props) {
+    const initialCell = props || {};
+    const {
+      isOpen = false,
+      isFlagged = false,
+      isMine = false,
+      isExploded = false,
+      label = false,
+    } = initialCell;
+
+    this.isOpen = isOpen;
+    this.isFlagged = isFlagged;
+    this.isMine = isMine;
+    this.isExploded = isExploded;
+    this.label = label;
   }
 
   open() {

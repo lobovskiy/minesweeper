@@ -31,7 +31,10 @@ class Minesweeper {
   }
 
   loadGame(game) {
-    this.cells = game.cells;
+    const cells = [];
+    game.cells.forEach((cell) => cells.push(new Cell(cell)));
+
+    this.cells = cells;
     this.isGameStarted = game.isGameStarted;
     this.isGameFinished = game.isGameFinished;
     this.isGameLost = game.isGameLost;
