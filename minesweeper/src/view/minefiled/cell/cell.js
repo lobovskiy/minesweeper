@@ -12,7 +12,7 @@ function renderCell(cell, id, callbackOpenCell, callbackToggleFlag, className) {
   cellElement.classList.add('minesweeper-cell');
 
   if (cell.isOpen) {
-    cellElement.classList.add('minesweeper-cell_open');
+    cellElement.classList.add('minesweeper-cell_opened');
 
     if (cell.label) {
       cellElement.classList.add(`minesweeper-cell_label-${cell.label}`);

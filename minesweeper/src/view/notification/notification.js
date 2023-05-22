@@ -1,5 +1,6 @@
 const notification = document.createElement('div');
 notification.classList.add('notification');
+import './style.scss';
 
 function clearNotification() {
   notification.innerHTML = '';

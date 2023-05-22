@@ -1,3 +1,5 @@
+@import '../../styles/style.scss';
+
 .toolbar {
   display: flex;
   justify-content: space-between;
@@ -18,5 +20,11 @@
     @media (max-width: 46em) {
       margin-block: 1em;
     }
+  }
+}
+
+.#{$dark-mode} .toolbar {
+  &__display {
+    color: white;
   }
 }
