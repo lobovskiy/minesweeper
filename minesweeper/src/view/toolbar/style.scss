@@ -1,11 +1,22 @@
 .toolbar {
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
 
+  @media (max-width: 46em) {
+    flex-direction: column;
+  }
+
+  &__block {
+    display: flex;
+  }
+
   &__display {
     text-align: center;
+
+    @media (max-width: 46em) {
+      margin-block: 1em;
+    }
   }
 }

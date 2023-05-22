@@ -3,8 +3,12 @@ import imgMine from '../../../assets/images/mine.png';
 import imgFlag from '../../../assets/images/flag.png';
 import './style.scss';
 
-function renderCell(cell, id, callbackOpenCell, callbackToggleFlag) {
+function renderCell(cell, id, callbackOpenCell, callbackToggleFlag, className) {
   const cellElement = document.createElement('div');
+
+  if (className) {
+    cellElement.classList.add(className);
+  }
   cellElement.classList.add('minesweeper-cell');
 
   if (cell.isOpen) {

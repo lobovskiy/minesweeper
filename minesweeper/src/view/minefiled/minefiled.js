@@ -22,7 +22,13 @@ function refreshMinefieldCells(callbacks = {}) {
   minefield.innerHTML = '';
 
   cells.forEach((cell, index) => {
-    const cellElement = renderCell(cell, index, openCell, toggleFlag);
+    const cellElement = renderCell(
+      cell,
+      index,
+      openCell,
+      toggleFlag,
+      'minefield__cell',
+    );
 
     minefield.append(cellElement);
   });

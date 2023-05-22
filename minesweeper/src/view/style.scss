@@ -1,9 +1,13 @@
 .minesweeper {
-  width: 50em;
   margin-inline: auto;
 
   &__title {
     text-align: center;
+  }
+
+  &__toolbar {
+    max-width: 45em;
+    margin-inline: auto;
   }
 
   &__notification {

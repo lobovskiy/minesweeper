@@ -52,15 +52,21 @@ function renderToolbarComponents(callbacks = {}) {
   displayContainer.classList.add('toolbar__display');
   displayContainer.append(timerContainer, movesContainer);
 
-  toolbar.append(
-    dropdownNewGame,
-    buttonSaveGame,
-    buttonLoadGame,
-    displayContainer,
+  const toolbarBlock1 = document.createElement('div');
+  toolbarBlock1.classList.add('toolbar__block');
+  toolbarBlock1.append(dropdownNewGame, buttonSaveGame, buttonLoadGame);
+  const toolbarBlock2 = document.createElement('div');
+  toolbarBlock2.classList.add('toolbar__block');
+  toolbarBlock2.append(displayContainer);
+  const toolbarBlock3 = document.createElement('div');
+  toolbarBlock3.classList.add('toolbar__block');
+  toolbarBlock3.append(
     buttonShowStats,
     buttonToggleSound,
     buttonToggleDarkMode,
   );
+
+  toolbar.append(toolbarBlock1, toolbarBlock2, toolbarBlock3);
 }
 
 export { toolbar, renderToolbarComponents };
