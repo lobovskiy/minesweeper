@@ -13,8 +13,7 @@
   background-color: rgba(0, 0, 0, 0.4);
 
   &__content {
-    width: 50%;
-    height: 50%;
+    max-width: 90%;
     box-sizing: border-box;
     padding: 2em;
     background-color: #fff;

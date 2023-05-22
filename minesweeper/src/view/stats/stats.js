@@ -1,4 +1,5 @@
 import { formatDateTime } from '../../utils.js';
+import './style.scss';
 
 const statsContainer = document.createElement('div');
 statsContainer.classList.add('stats');
@@ -13,6 +14,7 @@ function getStatsTable() {
   statsTable.innerHTML = `
     <div>#</div>
     <div>Date and time</div>
+    <div>Difficulty</div>
     <div>Result</div>
     <div>Seconds</div>
     <div>Moves</div>
@@ -38,6 +40,8 @@ function renderStats(stats) {
       numberContainer.innerHTML = index + 1;
       const dateTimeContainer = document.createElement('div');
       dateTimeContainer.innerHTML = formatDateTime(stat.dateTime);
+      const difficultyContainer = document.createElement('div');
+      difficultyContainer.innerHTML = stat.difficulty;
       const resultContainer = document.createElement('div');
       resultContainer.innerHTML = stat.result;
       const secondsContainer = document.createElement('div');
@@ -48,6 +52,7 @@ function renderStats(stats) {
       table.append(
         numberContainer,
         dateTimeContainer,
+        difficultyContainer,
         resultContainer,
         secondsContainer,
         movesContainer,

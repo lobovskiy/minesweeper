@@ -1,4 +1,5 @@
 import minesweeperService from '../services/Minesweeper';
+import settingsService from '../services/Settings';
 import { showModal } from '../view/modal/modal';
 import renderStats from '../view/stats/stats';
 import { getTimeInMilliseconds } from './timerController';
@@ -16,6 +17,7 @@ function getStats() {
 function addStats() {
   const statsObj = {
     dateTime: new Date(),
+    difficulty: settingsService.difficulty,
     seconds: getTimeInMilliseconds() / 1000,
     moves: minesweeperService.moves,
     result: minesweeperService.isGameLost

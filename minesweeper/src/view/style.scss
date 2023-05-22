@@ -20,13 +20,6 @@
   }
 }
 
-.stats {
-  &__table {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
 .#{$dark-mode} .minesweeper {
   &__title {
     color: white;
