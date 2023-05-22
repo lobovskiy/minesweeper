@@ -50,12 +50,15 @@ function renderToolbarComponents(callbacks = {}) {
   movesContainer.classList.add('toolbar__moves');
   movesContainer.append(moves);
 
+  const displayContainer = document.createElement('div');
+  displayContainer.classList.add('toolbar__display');
+  displayContainer.append(timerContainer, movesContainer);
+
   toolbar.append(
     dropdownNewGame,
     buttonSaveGame,
     buttonLoadGame,
-    timerContainer,
-    movesContainer,
+    displayContainer,
     buttonShowStats,
     buttonToggleSound,
     buttonToggleColorTheme,
