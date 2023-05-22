@@ -2,6 +2,7 @@ import { renderButton, renderDropdown } from '../components';
 import { timer } from '../timer/timer';
 import { moves } from './moves/moves';
 import { renderButtonToggleSound } from './buttonToggleSound';
+import { renderButtonToggleDarkMode } from './buttonToggleDarkMode';
 import { DIFFICULTIES } from '../../constants';
 import './style.scss';
 
@@ -22,7 +23,7 @@ function renderToolbarComponents(callbacks = {}) {
     loadGame,
     showStats,
     toggleSound,
-    toggleDarkThemeClass,
+    toggleDarkMode,
   } = callbacks;
 
   const dropdownNewGame = renderDropdown(
@@ -37,10 +38,7 @@ function renderToolbarComponents(callbacks = {}) {
     showStats(),
   );
   const buttonToggleSound = renderButtonToggleSound(toggleSound);
-  const buttonToggleColorTheme = renderButton(
-    LABELS.buttonToggleColorTheme,
-    () => toggleDarkThemeClass(),
-  );
+  const buttonToggleDarkMode = renderButtonToggleDarkMode(toggleDarkMode);
 
   const timerContainer = document.createElement('div');
   timerContainer.classList.add('toolbar__timer');
@@ -61,7 +59,7 @@ function renderToolbarComponents(callbacks = {}) {
     displayContainer,
     buttonShowStats,
     buttonToggleSound,
-    buttonToggleColorTheme,
+    buttonToggleDarkMode,
   );
 }
 

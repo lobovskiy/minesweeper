@@ -9,7 +9,8 @@ import {
 import updateMinefield from './minefieldController';
 import { showStats } from './statsController';
 import { toggleSound } from './soundController';
-import { renderApp, toggleDarkThemeClass } from '../view';
+import toggleDarkMode from './colorThemeController';
+import { renderApp } from '../view';
 import { renderToolbarComponents } from '../view/toolbar/toolbar';
 import { updateMoves } from '../view/toolbar/moves/moves';
 import { updateMinefieldRenderParams } from '../view/minefiled/minefiled';
@@ -62,7 +63,7 @@ function initApp() {
     loadGame,
     showStats,
     toggleSound,
-    toggleDarkThemeClass,
+    toggleDarkMode,
   };
 
   renderApp();

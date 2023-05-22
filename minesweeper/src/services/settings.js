@@ -4,6 +4,7 @@ class Settings {
   constructor() {
     this.difficulty = DIFFICULTIES.beginner;
     this.sound = true;
+    this.darkMode = false;
   }
 
   getDifficulty() {
@@ -16,6 +17,10 @@ class Settings {
 
   toggleSound() {
     this.sound = !this.sound;
+  }
+
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode;
   }
 }
 
