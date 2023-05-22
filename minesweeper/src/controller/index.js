@@ -22,6 +22,7 @@ function saveGame() {
   localStorage.setItem(
     LS_KEY_SAVED_GAME,
     JSON.stringify({
+      difficulty: settingsService.difficulty,
       timer: getTimeInMilliseconds(),
       game: minesweeperService,
     }),
@@ -30,8 +31,9 @@ function saveGame() {
 
 function loadGame() {
   const savedGame = JSON.parse(localStorage.getItem(LS_KEY_SAVED_GAME));
-  const { timer, game } = savedGame;
+  const { timer, game, difficulty } = savedGame;
 
+  settingsService.setDifficulty(difficulty);
   resetTimer();
   setTimer(timer);
   if (game.isGameStarted) {
@@ -39,6 +41,7 @@ function loadGame() {
   }
 
   minesweeperService.loadGame(game);
+  updateMinefieldRenderParams();
   updateMinefield();
 }
 
