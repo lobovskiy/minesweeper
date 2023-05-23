@@ -6,8 +6,8 @@ const DIFFICULTIES = {
 
 const MINEFIELD_SETTINGS_BY_DIFFICULTY = {
   [DIFFICULTIES.beginner]: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     minesAmount: 10,
   },
   [DIFFICULTIES.intermediate]: {
