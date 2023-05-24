@@ -20,6 +20,7 @@ import {
 import { updateMoves } from '../view/toolbar/moves';
 import { updateMinefieldRenderParams } from '../view/minefiled/minefiled';
 import { clearNotification } from '../view/notification/notification';
+import { NUMBER_OF_MINES } from '../constants';
 
 const LS_KEY_SAVED_GAME = 'savedGame';
 
@@ -66,6 +67,8 @@ function initGame() {
 
 function startNewGame(difficulty) {
   settingsService.setDifficulty(difficulty);
+  settingsService.setNumberOfMines(NUMBER_OF_MINES[difficulty]);
+  setInputNumberOfMinesValue(NUMBER_OF_MINES[difficulty]);
   minesweeperService.initNewGame();
   initGame();
 }
