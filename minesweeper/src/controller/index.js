@@ -12,7 +12,12 @@ import { toggleSound } from './soundController';
 import toggleDarkMode from './colorThemeController';
 import { renderApp } from '../view';
 import { renderToolbarComponents } from '../view/toolbar/toolbar';
-import { updateMoves } from '../view/toolbar/moves/moves';
+import {
+  disableInputNumberOfMines,
+  enableInputNumberOfMines,
+  setInputNumberOfMinesValue,
+} from '../view/toolbar/numberOfMines/numberOfMines';
+import { updateMoves } from '../view/toolbar/moves';
 import { updateMinefieldRenderParams } from '../view/minefiled/minefiled';
 import { clearNotification } from '../view/notification/notification';
 
@@ -23,6 +28,7 @@ function saveGame() {
     LS_KEY_SAVED_GAME,
     JSON.stringify({
       difficulty: settingsService.difficulty,
+      numberOfMines: settingsService.numberOfMines,
       timer: getTimeInMilliseconds(),
       game: minesweeperService,
     }),
@@ -31,13 +37,17 @@ function saveGame() {
 
 function loadGame() {
   const savedGame = JSON.parse(localStorage.getItem(LS_KEY_SAVED_GAME));
-  const { timer, game, difficulty } = savedGame;
+  const { difficulty, numberOfMines, timer, game } = savedGame;
 
   settingsService.setDifficulty(difficulty);
+  settingsService.setNumberOfMines(numberOfMines);
   resetTimer();
   setTimer(timer);
+  setInputNumberOfMinesValue(numberOfMines);
+
   if (game.isGameStarted) {
     startTimer();
+    disableInputNumberOfMines();
   }
 
   minesweeperService.loadGame(game);
@@ -46,6 +56,7 @@ function loadGame() {
 }
 
 function initGame() {
+  enableInputNumberOfMines();
   resetTimer();
   updateMoves();
   clearNotification();

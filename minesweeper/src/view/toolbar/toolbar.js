@@ -1,6 +1,7 @@
 import { renderButton, renderDropdown } from '../components';
 import { timer } from '../timer/timer';
-import { moves } from './moves/moves';
+import { moves } from './moves';
+import { numberOfMines } from './numberOfMines/numberOfMines';
 import { renderButtonToggleSound } from './buttonToggleSound';
 import { renderButtonToggleDarkMode } from './buttonToggleDarkMode';
 import { DIFFICULTIES } from '../../constants';
@@ -40,6 +41,10 @@ function renderToolbarComponents(callbacks = {}) {
   const buttonToggleSound = renderButtonToggleSound(toggleSound);
   const buttonToggleDarkMode = renderButtonToggleDarkMode(toggleDarkMode);
 
+  const numberOfMinesContainer = document.createElement('div');
+  numberOfMinesContainer.classList.add('toolbar__number-of-mines');
+  numberOfMinesContainer.append(numberOfMines);
+
   const timerContainer = document.createElement('div');
   timerContainer.classList.add('toolbar__timer');
   timerContainer.append(timer);
@@ -50,7 +55,11 @@ function renderToolbarComponents(callbacks = {}) {
 
   const displayContainer = document.createElement('div');
   displayContainer.classList.add('toolbar__display');
-  displayContainer.append(timerContainer, movesContainer);
+  displayContainer.append(
+    numberOfMinesContainer,
+    timerContainer,
+    movesContainer,
+  );
 
   const toolbarBlock1 = document.createElement('div');
   toolbarBlock1.classList.add('toolbar__block');

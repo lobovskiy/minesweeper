@@ -20,6 +20,10 @@
     @media (max-width: 46em) {
       margin-block: 1em;
     }
+
+    & > * {
+      margin-block: 0.5em;
+    }
   }
 }
 

@@ -4,6 +4,11 @@ const DIFFICULTIES = {
   expert: 'expert',
 };
 
+const NUMBER_OF_MINES = {
+  min: 10,
+  max: 99,
+};
+
 const MINEFIELD_SETTINGS_BY_DIFFICULTY = {
   [DIFFICULTIES.beginner]: {
     width: 10,
@@ -22,4 +27,4 @@ const MINEFIELD_SETTINGS_BY_DIFFICULTY = {
   },
 };
 
-export { DIFFICULTIES, MINEFIELD_SETTINGS_BY_DIFFICULTY };
+export { DIFFICULTIES, NUMBER_OF_MINES, MINEFIELD_SETTINGS_BY_DIFFICULTY };

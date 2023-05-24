@@ -1,10 +1,11 @@
-import { DIFFICULTIES } from '../constants';
+import { DIFFICULTIES, NUMBER_OF_MINES } from '../constants';
 
 class Settings {
   constructor() {
     this.difficulty = DIFFICULTIES.beginner;
     this.sound = true;
     this.darkMode = false;
+    this.numberOfMines = NUMBER_OF_MINES.min;
   }
 
   getDifficulty() {
@@ -13,6 +14,10 @@ class Settings {
 
   setDifficulty(value) {
     this.difficulty = value;
+  }
+
+  setNumberOfMines(value) {
+    this.numberOfMines = value;
   }
 
   toggleSound() {

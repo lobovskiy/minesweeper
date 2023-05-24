@@ -78,11 +78,8 @@ class Minesweeper {
       (cellIndex) => cellIndex !== indexClicked,
     );
     const cellsIndexesShuffled = shuffleArray(cellsIndexesExceptClicked);
-    const minedCellIndexes = cellsIndexesShuffled.slice(
-      0,
-      MINEFIELD_SETTINGS_BY_DIFFICULTY[settingsService.getDifficulty()]
-        .minesAmount,
-    );
+    const { numberOfMines } = settingsService;
+    const minedCellIndexes = cellsIndexesShuffled.slice(0, numberOfMines);
 
     minedCellIndexes.forEach((minedCellIndex) => {
       this.cells[minedCellIndex].setMine();

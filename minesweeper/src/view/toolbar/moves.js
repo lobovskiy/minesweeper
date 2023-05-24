@@ -1,4 +1,4 @@
-import minesweeperService from '../../../services/Minesweeper';
+import minesweeperService from '../../services/Minesweeper';
 
 const MOVES_LABEL = 'Moves: ';
 
