@@ -21,29 +21,29 @@
 
   &[data-difficulty='intermediate'] {
     #{$cell} {
-      width: 42px;
-      height: 42px;
+      width: 45px;
+      height: 45px;
 
       @media (max-width: 46em) {
-        width: 27px;
-        height: 27px;
+        width: 30px;
+        height: 30px;
       }
     }
   }
 
   &[data-difficulty='expert'] {
     #{$cell} {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
 
       @media (max-width: 80em) {
-        width: 24px;
-        height: 24px;
+        width: 27px;
+        height: 27px;
       }
 
       @media (max-width: 46em) {
-        width: 15px;
-        height: 15px;
+        width: 18px;
+        height: 18px;
       }
     }
   }

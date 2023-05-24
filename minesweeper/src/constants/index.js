@@ -11,13 +11,13 @@ const MINEFIELD_SETTINGS_BY_DIFFICULTY = {
     minesAmount: 10,
   },
   [DIFFICULTIES.intermediate]: {
-    width: 16,
-    height: 16,
+    width: 15,
+    height: 15,
     minesAmount: 40,
   },
   [DIFFICULTIES.expert]: {
-    width: 30,
-    height: 16,
+    width: 25,
+    height: 25,
     minesAmount: 99,
   },
 };
