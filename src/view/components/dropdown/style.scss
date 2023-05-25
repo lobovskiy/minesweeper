@@ -1,0 +1,72 @@
+@import '../../../styles/style.scss';
+
+.dropdown {
+  $selector: null;
+  $list: null;
+
+  &__selector {
+    $selector: &;
+
+    position: relative;
+    padding-right: 1.5em;
+
+    &::before {
+      content: '▼';
+      position: absolute;
+      right: 0.5em;
+
+      transition: transform 0.2s ease-out;
+    }
+  }
+
+  &__list {
+    $list: &;
+
+    position: absolute;
+    display: none;
+    left: 0;
+    top: 100%;
+    text-align: left;
+    background: #c0c0c0;
+    box-sizing: border-box;
+    border: 1px solid #808080;
+    border-width: 0 1px 1px 0;
+    z-index: 5;
+
+    &-item {
+      padding: 0.15em 0.2em;
+      border: 1px solid transparent;
+
+      &:hover {
+        background: #969696;
+
+        &:not(:first-child) {
+          border-top: 1px solid #5e5e5e;
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid #dadada;
+        }
+      }
+    }
+  }
+
+  &[data-opened] {
+    #{$selector} {
+      &::before {
+        transform: rotate(180deg);
+      }
+    }
+
+    #{$list} {
+      display: block;
+    }
+  }
+}
+
+.#{$dark-mode} .dropdown {
+  &__list {
+    background: #525252;
+    border: 1px solid #444444;
+  }
+}

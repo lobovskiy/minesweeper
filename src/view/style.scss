@@ -1,0 +1,27 @@
+@import '../styles/style.scss';
+
+.minesweeper {
+  margin-inline: auto;
+
+  &__title {
+    text-align: center;
+    padding-block: 0.5em;
+  }
+
+  &__toolbar {
+    max-width: 45em;
+    margin-inline: auto;
+  }
+
+  &__notification {
+    height: 1em;
+    padding: 0.5em;
+    text-align: center;
+  }
+}
+
+.#{$dark-mode} .minesweeper {
+  &__title {
+    color: white;
+  }
+}

@@ -1,0 +1,23 @@
+@import 'normalize.css';
+
+$dark-mode: dark-mode;
+
+body {
+  min-height: 100vh;
+  font-family: 'Roboto Sans', monospace;
+  background-color: #1abeb6;
+  overflow: auto;
+  box-sizing: border-box;
+
+  &.#{$dark-mode} {
+    background-color: #2a3837;
+  }
+}
+
+h1 {
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}

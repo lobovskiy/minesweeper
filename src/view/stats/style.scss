@@ -1,0 +1,11 @@
+.stats {
+  &__table {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(min-content, max-content));
+    column-gap: 1em;
+
+    :nth-child(-n + 6) {
+      font-weight: bold;
+    }
+  }
+}

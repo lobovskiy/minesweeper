@@ -1,0 +1,53 @@
+.minefield {
+  $cell: null;
+
+  display: grid;
+  width: fit-content;
+  margin-inline: auto;
+  font-size: 2rem;
+  font-weight: bold;
+
+  &__cell {
+    $cell: &;
+
+    width: 68px;
+    height: 68px;
+
+    @media (max-width: 46em) {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  &[data-difficulty='intermediate'] {
+    #{$cell} {
+      width: 45px;
+      height: 45px;
+
+      @media (max-width: 46em) {
+        width: 30px;
+        height: 30px;
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  &[data-difficulty='expert'] {
+    #{$cell} {
+      width: 42px;
+      height: 42px;
+
+      @media (max-width: 80em) {
+        width: 27px;
+        height: 27px;
+        font-size: 1.6rem;
+      }
+
+      @media (max-width: 46em) {
+        width: 18px;
+        height: 18px;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
