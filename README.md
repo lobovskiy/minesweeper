@@ -1,46 +1,32 @@
-# layout-template
+# Minesweeper
 
 ## General info
 
-A boilerplate for creating HTML+CSS+JS projects with _development server_ and _SASS/SCSS preprocessor_.
+A classic Minesweeper game created with JavaScript.
 
-## Setup
+## Demo
 
-1. Install the project locally using npm:
+Link: [https://lobovskiy.github.io/minesweeper](https://lobovskiy.github.io/minesweeper)
 
-   `npm install`
+## Development info
 
-2. Specify name of your project as a value of the HtmlWebpackPlugin's `title` property in the `\webpack.config.js` file.
+### Setup
 
-   To add a favicon also uncomment a line with the `favicon` property and specify a path to where your favicon file is as its value.
+Install the project locally using npm:
 
-```
-module.exports = {
-  ...
-  plugins: [
-    ...
-    new HtmlWebpackPlugin({
-      title: 'Your project name',
-      favicon: './path/to/your-favicon-file.png',
-      ...
-    }),
-    ...
-  ],
-  ...
-}
-```
+`npm install`
 
-## Available scripts
+### Available scripts
 
-### `npm start`
+#### `npm start`
 
 Starts the project in development mode.
 
-### `npm run build`
+#### `npm run build`
 
 Builds the app for production to the `dist` folder.
 
-## Technologies
+### Technologies
 
 Tools used for handy development:
 
